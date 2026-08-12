@@ -1,24 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Toaster } from "@/components/ui/sonner";
+import { Hero } from "@/components/vetor/Hero";
+import { Nichos } from "@/components/vetor/Nichos";
+import { Semana } from "@/components/vetor/Semana";
+import { Bastidores } from "@/components/vetor/Bastidores";
+import { Comparativo } from "@/components/vetor/Comparativo";
+import { Planos } from "@/components/vetor/Planos";
+import { Faq } from "@/components/vetor/Faq";
+import { LeadForm } from "@/components/vetor/LeadForm";
+import { Footer } from "@/components/vetor/Footer";
+import { FloatingWhats } from "@/components/vetor/FloatingWhats";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "Vetor — a agência de marketing que nunca dorme";
+const DESCRIPTION =
+  "Time de agentes de IA em tráfego, design, social media e estratégia atendendo seu negócio pelo WhatsApp 24h. Sem fidelidade, preço fechado.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESCRIPTION },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="scroll-smooth">
+      <Hero />
+      <Nichos />
+      <Semana />
+      <Bastidores />
+      <Comparativo />
+      <Planos />
+      <Faq />
+      <LeadForm />
+      <Footer />
+      <FloatingWhats />
+      <Toaster position="top-center" />
+    </main>
   );
 }
