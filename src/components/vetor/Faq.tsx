@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Section, SectionTitle } from "./shared";
+import { Reveal } from "./Reveal";
 
 const PERGUNTAS = [
   {
@@ -41,18 +42,20 @@ export function Faq() {
   return (
     <Section id="faq" dark>
       <SectionTitle eyebrow="Dúvidas" title="Perguntas que todo mundo faz" />
-      <Accordion type="single" collapsible className="w-full">
-        {PERGUNTAS.map((p) => (
-          <AccordionItem key={p.q} value={p.q} className="border-border">
-            <AccordionTrigger className="text-left text-base font-semibold sm:text-lg">
-              {p.q}
-            </AccordionTrigger>
-            <AccordionContent className="text-base leading-relaxed text-muted-foreground">
-              {p.a}
-            </AccordionContent>
-          </AccordionItem>
-        ))}
-      </Accordion>
+      <Reveal>
+        <Accordion type="single" collapsible className="w-full">
+          {PERGUNTAS.map((p) => (
+            <AccordionItem key={p.q} value={p.q} className="border-border">
+              <AccordionTrigger className="text-left text-base font-semibold transition-colors hover:text-primary sm:text-lg">
+                {p.q}
+              </AccordionTrigger>
+              <AccordionContent className="text-base leading-relaxed text-muted-foreground">
+                {p.a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Reveal>
     </Section>
   );
 }
