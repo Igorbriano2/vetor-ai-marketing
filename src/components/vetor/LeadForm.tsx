@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Section, WHATSAPP_URL } from "./shared";
+import { Reveal } from "./Reveal";
 
 const TIPOS = [
   "Restaurante ou delivery",
@@ -43,7 +44,7 @@ export function LeadForm() {
   return (
     <Section id="contato">
       <div className="grid items-center gap-10 lg:grid-cols-2">
-        <div>
+        <Reveal>
           <h2 className="text-3xl leading-tight sm:text-4xl">
             Sua agência atual está dormindo agora.{" "}
             <span className="text-primary">A sua nova, não.</span>
@@ -58,9 +59,9 @@ export function LeadForm() {
             <li>✓ Escopo escrito, preço fechado</li>
             <li>✓ Cancele quando quiser</li>
           </ul>
-        </div>
+        </Reveal>
 
-        <div className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
+        <Reveal delay={120} className="rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
           {enviado ? (
             <div className="animate-pop-in text-center">
               <p className="text-2xl font-bold text-card-foreground">Deu certo! 🎉</p>
@@ -125,7 +126,7 @@ export function LeadForm() {
               <button
                 type="submit"
                 disabled={enviando}
-                className="h-12 w-full rounded-xl bg-primary text-base font-semibold text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-60"
+                className="hover-pop h-12 w-full rounded-xl bg-primary text-base font-semibold text-primary-foreground disabled:opacity-60"
               >
                 {enviando ? "Enviando…" : "Quero falar com o Vetor"}
               </button>
@@ -134,7 +135,7 @@ export function LeadForm() {
               </p>
             </form>
           )}
-        </div>
+        </Reveal>
       </div>
     </Section>
   );

@@ -58,9 +58,9 @@ export function Nichos() {
             type="button"
             onClick={() => setAtivo(n.id)}
             aria-pressed={ativo === n.id}
-            className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+            className={`hover-pop rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
               ativo === n.id
-                ? "border-primary bg-primary text-primary-foreground"
+                ? "border-primary bg-primary text-primary-foreground shadow-glow"
                 : "border-border bg-card text-card-foreground hover:border-primary/50"
             }`}
           >
@@ -71,7 +71,7 @@ export function Nichos() {
 
       <div
         key={atual.id}
-        className="animate-pop-in mt-6 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8"
+        className="animate-pop-in hover-lift mt-6 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8"
       >
         <p className="text-xl font-semibold text-card-foreground sm:text-2xl">{atual.caso}</p>
         <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground">

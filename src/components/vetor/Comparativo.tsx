@@ -1,4 +1,5 @@
 import { Section, SectionTitle } from "./shared";
+import { Reveal } from "./Reveal";
 
 const LINHAS = [
   {
@@ -37,7 +38,7 @@ export function Comparativo() {
         subtitle="Nada contra agência de gente. A conta é que costuma não fechar pra quem tem um negócio pequeno."
       />
 
-      <div className="overflow-hidden rounded-3xl border border-border">
+      <Reveal className="overflow-hidden rounded-3xl border border-border">
         <table className="w-full border-collapse text-left text-sm sm:text-base">
           <thead>
             <tr className="bg-card">
@@ -58,7 +59,7 @@ export function Comparativo() {
             ))}
           </tbody>
         </table>
-      </div>
+      </Reveal>
     </Section>
   );
 }

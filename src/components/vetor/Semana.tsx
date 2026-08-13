@@ -1,4 +1,5 @@
 import { Section, SectionTitle } from "./shared";
+import { Reveal } from "./Reveal";
 
 const ETAPAS = [
   {
@@ -44,7 +45,7 @@ export function Semana() {
 
       <ol className="relative ml-3 border-l border-border pl-6 sm:pl-10">
         {ETAPAS.map((e) => (
-          <li key={e.quando} className="relative pb-10 last:pb-0">
+          <Reveal as="li" key={e.quando} className="relative block pb-10 last:pb-0">
             <span className="absolute -left-[31px] mt-1 grid size-4 place-items-center rounded-full bg-primary sm:-left-[47px]">
               <span className="size-1.5 rounded-full bg-primary-foreground" />
             </span>
@@ -53,7 +54,7 @@ export function Semana() {
             <p className="mt-2 max-w-2xl text-base leading-relaxed text-muted-foreground">
               {e.texto}
             </p>
-          </li>
+          </Reveal>
         ))}
       </ol>
     </Section>

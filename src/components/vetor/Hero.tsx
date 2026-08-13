@@ -32,7 +32,7 @@ export function Hero() {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#planos"
-                className="inline-flex h-13 items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-glow transition-opacity hover:opacity-90"
+                className="hover-pop inline-flex h-13 items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-glow"
               >
                 Quero conhecer o Vetor
               </a>
@@ -40,7 +40,7 @@ export function Hero() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-xl border border-border px-7 py-3.5 text-base font-semibold transition-colors hover:bg-accent"
+                className="hover-pop inline-flex items-center justify-center rounded-xl border border-border px-7 py-3.5 text-base font-semibold transition-colors hover:bg-accent"
               >
                 Falar no WhatsApp
               </a>
