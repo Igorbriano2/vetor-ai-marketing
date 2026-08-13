@@ -1,4 +1,5 @@
 import { Section, SectionTitle } from "./shared";
+import { Reveal } from "./Reveal";
 
 const CARDS = [
   {
@@ -33,16 +34,15 @@ export function Bastidores() {
       />
       <div className="grid gap-4 sm:grid-cols-2">
         {CARDS.map((c, i) => (
-          <div
-            key={c.titulo}
-            className="rounded-3xl border border-border bg-card p-6 shadow-soft transition-transform hover:-translate-y-1"
-          >
-            <span className="text-sm font-bold text-primary">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 className="mt-2 text-xl text-card-foreground">{c.titulo}</h3>
-            <p className="mt-2 text-base leading-relaxed text-muted-foreground">{c.texto}</p>
-          </div>
+          <Reveal key={c.titulo} delay={i * 80}>
+            <div className="hover-lift h-full rounded-3xl border border-border bg-card p-6 shadow-soft hover:border-primary/40">
+              <span className="text-sm font-bold text-primary">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-2 text-xl text-card-foreground">{c.titulo}</h3>
+              <p className="mt-2 text-base leading-relaxed text-muted-foreground">{c.texto}</p>
+            </div>
+          </Reveal>
         ))}
       </div>
     </Section>
