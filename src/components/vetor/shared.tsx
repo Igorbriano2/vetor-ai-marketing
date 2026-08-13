@@ -37,13 +37,19 @@ export function SectionTitle({
   return (
     <div className="mb-10 max-w-2xl">
       {eyebrow ? (
-        <span className="mb-3 inline-block rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase">
-          {eyebrow}
-        </span>
+        <Reveal>
+          <span className="mb-3 inline-block rounded-full border border-primary/40 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary uppercase">
+            {eyebrow}
+          </span>
+        </Reveal>
       ) : null}
-      <h2 className="text-3xl leading-tight sm:text-4xl">{title}</h2>
+      <Reveal delay={70}>
+        <h2 className="text-3xl leading-tight sm:text-4xl">{title}</h2>
+      </Reveal>
       {subtitle ? (
-        <p className="mt-3 text-base text-muted-foreground sm:text-lg">{subtitle}</p>
+        <Reveal delay={140}>
+          <p className="mt-3 text-base text-muted-foreground sm:text-lg">{subtitle}</p>
+        </Reveal>
       ) : null}
     </div>
   );
