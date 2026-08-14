@@ -13,6 +13,7 @@ import { AutonomyPlans } from "@/components/vetor/AutonomyPlans";
 import { FinalActivation } from "@/components/vetor/FinalActivation";
 import { Footer } from "@/components/vetor/Footer";
 import { FloatingWhats } from "@/components/vetor/FloatingWhats";
+import { VetorActivationController } from "@/components/vetor/activation/VetorActivationController";
 
 const TITLE = "VETOR — o sistema operacional de crescimento do seu negócio";
 const DESCRIPTION =
@@ -34,21 +35,23 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="scroll-smooth bg-background">
-      <BootSequence />
-      <SystemNav />
-      <Hero />
-      <Fragmentacao />
-      <AgentNetwork />
-      <MissionTimeline />
-      <CicloInteligencia />
-      <VerticalSelector />
-      <SignalCards />
-      <AutonomyPlans />
-      <FinalActivation />
-      <Footer />
-      <FloatingWhats />
-      <Toaster position="top-center" />
-    </main>
+    <VetorActivationController>
+      <main className="scroll-smooth bg-background">
+        <BootSequence />
+        <SystemNav />
+        <Hero />
+        <Fragmentacao />
+        <AgentNetwork />
+        <MissionTimeline />
+        <CicloInteligencia />
+        <VerticalSelector />
+        <SignalCards />
+        <AutonomyPlans />
+        <FinalActivation />
+        <Footer />
+        <FloatingWhats />
+        <Toaster position="top-center" />
+      </main>
+    </VetorActivationController>
   );
 }
