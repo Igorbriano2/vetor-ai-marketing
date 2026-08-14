@@ -293,7 +293,9 @@ export function VetorOperationOverlay({
 
         <div className="relative flex flex-1 flex-col items-center justify-center py-6 lg:flex-row lg:items-center lg:justify-center">
           <div className="relative flex w-full flex-1 items-center justify-center">
-            <div className="relative flex aspect-square w-full max-w-[46rem] items-center justify-center">
+            <div
+              className={`relative flex aspect-square w-full max-w-[46rem] items-center justify-center ${done ? "max-h-[34vh] sm:max-h-none" : ""}`}
+            >
               <CoreVisual active={state !== "activating"} />
               <SpecialistNodes litCount={litCount} />
             </div>
