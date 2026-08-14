@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
 import {
   AGENTS,
   CONTEXT_UNITS,
@@ -127,7 +127,7 @@ function StepPanel({ step }: { step: OperationStep }) {
                   animationDelay: `${i * 110}ms`,
                   "--sx": `${i % 2 ? "-24px" : "24px"}`,
                   "--sy": "18px",
-                } as React.CSSProperties
+                } as CSSProperties
               }
             >
               {u}
@@ -142,7 +142,7 @@ function StepPanel({ step }: { step: OperationStep }) {
             <li
               key={a}
               className="animate-stream-in rounded-full border border-[var(--op-ink)]/30 bg-[var(--op-ink)] px-3 py-1.5 font-mono text-[0.6rem] tracking-[0.18em] text-[var(--op-warm-white)]"
-              style={{ animationDelay: `${i * 140}ms` } as React.CSSProperties}
+              style={{ animationDelay: `${i * 140}ms` } as CSSProperties}
             >
               {a}
             </li>
@@ -156,7 +156,7 @@ function StepPanel({ step }: { step: OperationStep }) {
             <li
               key={o.title}
               className="animate-stream-in rounded-xl border border-[var(--op-ink)]/20 bg-[var(--op-warm-white)]/55 p-4"
-              style={{ animationDelay: `${i * 200}ms` } as React.CSSProperties}
+              style={{ animationDelay: `${i * 200}ms` } as CSSProperties}
             >
               <span className="font-mono text-[0.55rem] tracking-[0.2em] text-[var(--op-ink)]/60">
                 {o.tag}
@@ -173,7 +173,7 @@ function StepPanel({ step }: { step: OperationStep }) {
           <li
             key={line}
             className="animate-stream-in font-mono text-[0.65rem] tracking-[0.18em] text-[var(--op-ink)]/80"
-            style={{ animationDelay: `${i * 160}ms` } as React.CSSProperties}
+            style={{ animationDelay: `${i * 160}ms` } as CSSProperties}
           >
             › {line}
           </li>
@@ -282,7 +282,7 @@ export function VetorOperationOverlay({
         {
           "--op-x": `${origin.x}%`,
           "--op-y": `${origin.y}%`,
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       <div
