@@ -1,61 +1,69 @@
-import { VetorLogo, WHATSAPP_URL } from "./shared";
-import { WhatsAppMock } from "./WhatsAppMock";
+import { useCallback, useState } from "react";
+import { CommandBar } from "./CommandBar";
+import { VetorCore, type CoreState } from "./VetorCore";
+import { CtaGhost, CtaPrimary, MonoLabel } from "./system";
+
+const SIGNAIS = [
+  { label: "MARKET SIGNALS", pos: "left-0 top-[12%]" },
+  { label: "AUDIENCE MAP", pos: "right-0 top-[24%]" },
+  { label: "CAMPAIGN ENGINE", pos: "left-[2%] bottom-[26%]" },
+  { label: "CONTENT SYSTEM", pos: "right-[2%] bottom-[14%]" },
+  { label: "REVENUE LOOP", pos: "left-1/2 -translate-x-1/2 top-0" },
+];
 
 export function Hero() {
+  const [state, setState] = useState<CoreState>("idle");
+  const handleState = useCallback((s: CoreState) => setState(s), []);
+
   return (
-    <header className="section-dark px-5 pt-6 pb-16 sm:px-8 md:pb-24">
-      <div className="mx-auto w-full max-w-6xl">
-        <nav className="flex items-center justify-between">
-          <VetorLogo />
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="hidden h-10 items-center rounded-xl border border-border px-4 text-sm font-semibold sm:inline-flex"
-          >
-            Falar no WhatsApp
-          </a>
-        </nav>
+    <section id="topo" className="grain relative overflow-hidden px-5 pt-28 pb-16 sm:px-8 sm:pt-36 md:pb-24">
+      <div className="grid-bg pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-x-0 -top-40 h-[520px] opacity-70"
+        style={{
+          background:
+            "radial-gradient(60% 60% at 50% 40%, color-mix(in oklab, var(--electric) 16%, transparent), transparent 70%)",
+        }}
+        aria-hidden="true"
+      />
 
-        <div className="mt-12 grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
-            <h1 className="text-4xl leading-[1.1] sm:text-5xl lg:text-[3.4rem]">
-              Sua agência atual demora 3 dias para responder. A sua nova agência{" "}
-              <span className="text-primary">responde em 3 segundos</span> — e nunca dorme.
-            </h1>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-              O Vetor é um time de agentes de inteligência artificial — tráfego pago, design,
-              social media e estratégia — atendendo você pelo WhatsApp, todos os dias, a qualquer
-              hora. Tudo supervisionado por especialistas que entendem de negócio pequeno.
-            </p>
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8">
+        <div>
+          <MonoLabel tone="cyan">vetor // the growth operating system</MonoLabel>
+          <h1 className="mt-5 text-[2.1rem] leading-[1.05] font-semibold text-balance sm:text-5xl lg:text-[3.3rem]">
+            Seu negócio tem um objetivo.
+            <span className="block text-primary">O VETOR encontra a rota.</span>
+          </h1>
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Uma inteligência operacional de marketing que entende seu negócio, coordena
+            especialistas de IA e transforma intenção em crescimento mensurável.
+          </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#planos"
-                className="hover-pop inline-flex h-13 items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-primary-foreground shadow-glow"
-              >
-                Quero conhecer o Vetor
-              </a>
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="hover-pop inline-flex items-center justify-center rounded-xl border border-border px-7 py-3.5 text-base font-semibold transition-colors hover:bg-accent"
-              >
-                Falar no WhatsApp
-              </a>
-            </div>
-
-            <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
-              <li>✓ Sem fidelidade</li>
-              <li>✓ Setup em minutos</li>
-              <li>✓ Cancele quando quiser</li>
-            </ul>
+          <div className="mt-8">
+            <CommandBar onStateChange={handleState} />
           </div>
 
-          <WhatsAppMock />
+          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <CtaPrimary href="#ativar">Iniciar meu diagnóstico</CtaPrimary>
+            <CtaGhost href="#missao">Ver o VETOR em ação</CtaGhost>
+          </div>
+        </div>
+
+        <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+          <VetorCore state={state} />
+          <div className="pointer-events-none absolute inset-0 hidden sm:block" aria-hidden="true">
+            {SIGNAIS.map((s, i) => (
+              <span
+                key={s.label}
+                className={`absolute ${s.pos} rounded-full border border-border bg-surface/70 px-2.5 py-1 font-mono text-[0.6rem] tracking-[0.16em] text-muted-foreground backdrop-blur-sm`}
+                style={{ animationDelay: `${i * 700}ms` }}
+              >
+                {s.label}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-    </header>
+    </section>
   );
 }

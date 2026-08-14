@@ -1,19 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import { BootSequence } from "@/components/vetor/BootSequence";
+import { SystemNav } from "@/components/vetor/SystemNav";
 import { Hero } from "@/components/vetor/Hero";
-import { Nichos } from "@/components/vetor/Nichos";
-import { Semana } from "@/components/vetor/Semana";
-import { Bastidores } from "@/components/vetor/Bastidores";
-import { Comparativo } from "@/components/vetor/Comparativo";
-import { Planos } from "@/components/vetor/Planos";
-import { Faq } from "@/components/vetor/Faq";
-import { LeadForm } from "@/components/vetor/LeadForm";
+import { Fragmentacao } from "@/components/vetor/Fragmentacao";
+import { AgentNetwork } from "@/components/vetor/AgentNetwork";
+import { MissionTimeline } from "@/components/vetor/MissionTimeline";
+import { CicloInteligencia } from "@/components/vetor/CicloInteligencia";
+import { VerticalSelector } from "@/components/vetor/VerticalSelector";
+import { SignalCards } from "@/components/vetor/SignalCards";
+import { AutonomyPlans } from "@/components/vetor/AutonomyPlans";
+import { FinalActivation } from "@/components/vetor/FinalActivation";
 import { Footer } from "@/components/vetor/Footer";
 import { FloatingWhats } from "@/components/vetor/FloatingWhats";
 
-const TITLE = "Vetor — a agência de marketing que nunca dorme";
+const TITLE = "VETOR — o sistema operacional de crescimento do seu negócio";
 const DESCRIPTION =
-  "Time de agentes de IA em tráfego, design, social media e estratégia atendendo seu negócio pelo WhatsApp 24h. Sem fidelidade, preço fechado.";
+  "Uma agência autônoma operada por inteligência artificial: missões de crescimento, execução contínua e decisões suas. Atendimento 24h pelo WhatsApp.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -31,15 +34,18 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="scroll-smooth">
+    <main className="scroll-smooth bg-background">
+      <BootSequence />
+      <SystemNav />
       <Hero />
-      <Nichos />
-      <Semana />
-      <Bastidores />
-      <Comparativo />
-      <Planos />
-      <Faq />
-      <LeadForm />
+      <Fragmentacao />
+      <AgentNetwork />
+      <MissionTimeline />
+      <CicloInteligencia />
+      <VerticalSelector />
+      <SignalCards />
+      <AutonomyPlans />
+      <FinalActivation />
       <Footer />
       <FloatingWhats />
       <Toaster position="top-center" />
