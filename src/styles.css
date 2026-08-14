@@ -312,3 +312,108 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ————— Modo de operação (amarelo) ————— */
+
+:root {
+  --op-yellow: oklch(0.84 0.14 88); /* #F5C542 */
+  --op-amber-deep: oklch(0.72 0.14 76); /* #D99A24 */
+  --op-yellow-lum: oklch(0.93 0.08 92); /* #FFE59A */
+  --op-field: oklch(0.8 0.14 85); /* #E7B735 */
+  --op-field-2: oklch(0.85 0.13 88); /* #F0C94C */
+  --op-ink: oklch(0.19 0.014 250); /* #11151A */
+  --op-warm-white: oklch(0.98 0.02 92); /* #FFF9E8 */
+}
+
+@utility op-field-bg {
+  background:
+    radial-gradient(
+      120% 90% at 50% 30%,
+      color-mix(in oklab, var(--op-yellow-lum) 85%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      100% 80% at 15% 90%,
+      color-mix(in oklab, var(--op-amber-deep) 70%, transparent),
+      transparent 65%
+    ),
+    linear-gradient(160deg, var(--op-field-2), var(--op-field) 55%, var(--op-amber-deep));
+}
+
+@utility op-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.19 0.014 250 / 10%) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.19 0.014 250 / 10%) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@keyframes vetor-field-expand {
+  from {
+    clip-path: circle(0% at var(--op-x, 50%) var(--op-y, 50%));
+  }
+  to {
+    clip-path: circle(150% at var(--op-x, 50%) var(--op-y, 50%));
+  }
+}
+
+@utility animate-field-expand {
+  animation: vetor-field-expand 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes vetor-field-collapse {
+  from {
+    clip-path: circle(150% at var(--op-x, 50%) var(--op-y, 50%));
+    opacity: 1;
+  }
+  to {
+    clip-path: circle(0% at var(--op-x, 50%) var(--op-y, 50%));
+    opacity: 0.4;
+  }
+}
+
+@utility animate-field-collapse {
+  animation: vetor-field-collapse 0.5s cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+@keyframes vetor-ring-out {
+  0% {
+    transform: scale(0.2);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+@utility animate-ring-out {
+  animation: vetor-ring-out 3.2s ease-out infinite;
+}
+
+@keyframes vetor-stream-in {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--sx, 0), var(--sy, 0), 0) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@utility animate-stream-in {
+  animation: vetor-stream-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes vetor-command-pulse {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--op-yellow) 70%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 26px transparent;
+  }
+}
+
+@utility animate-command-pulse {
+  animation: vetor-command-pulse 0.5s ease-out;
+}
