@@ -1,89 +1,80 @@
-export type VetorActivationState =
-  | "idle"
+export type VetorOperationState =
+  | "closed"
+  | "activating"
+  | "expanding"
+  | "operating"
+  | "diagnostic_ready"
+  | "closing";
+
+export type VetorOperationStep =
   | "command_received"
-  | "core_expanding"
-  | "operation_mode"
-  | "loading_context"
-  | "analyzing_signals"
-  | "coordinating_agents"
-  | "finding_opportunities"
-  | "diagnostic_ready"
-  | "exiting";
+  | "context_loaded"
+  | "signals_analyzed"
+  | "agents_coordinated"
+  | "opportunities_found"
+  | "result_ready";
 
-export type OperationStep = Extract<
-  VetorActivationState,
-  | "loading_context"
-  | "analyzing_signals"
-  | "coordinating_agents"
-  | "finding_opportunities"
-  | "diagnostic_ready"
->;
-
-export const OPERATION_STEPS: OperationStep[] = [
-  "loading_context",
-  "analyzing_signals",
-  "coordinating_agents",
-  "finding_opportunities",
-  "diagnostic_ready",
+export const OPERATION_STEPS: VetorOperationStep[] = [
+  "command_received",
+  "context_loaded",
+  "signals_analyzed",
+  "agents_coordinated",
+  "opportunities_found",
+  "result_ready",
 ];
 
 export const STEP_META: Record<
-  OperationStep,
-  { code: string; title: string; lines: string[] }
+  VetorOperationStep,
+  { index: string; status: string; statusEn: string; timeline: string }
 > = {
-  loading_context: {
-    code: "01 // CONTEXT",
-    title: "Contexto recebido",
-    lines: [
-      "CONTEXTO RECEBIDO",
-      "PERFIL DO NEGÓCIO CARREGADO",
-      "SINAIS DO PÚBLICO IDENTIFICADOS",
-    ],
+  command_received: {
+    index: "00",
+    status: "COMANDO RECEBIDO",
+    statusEn: "COMMAND RECEIVED",
+    timeline: "Comando recebido",
   },
-  analyzing_signals: {
-    code: "02 // ANALYSIS",
-    title: "Analisando o negócio",
-    lines: [
-      "ANALISANDO SINAIS DE MERCADO",
-      "MAPEANDO A JORNADA DO CLIENTE",
-      "IDENTIFICANDO GARGALOS DE CRESCIMENTO",
-    ],
+  context_loaded: {
+    index: "01",
+    status: "CONTEXTO RECEBIDO",
+    statusEn: "CONTEXT RECEIVED",
+    timeline: "Contexto recebido",
   },
-  coordinating_agents: {
-    code: "03 // SPECIALISTS",
-    title: "Coordenando especialistas",
-    lines: [
-      "ESTRATÉGIA // MISSÃO PRONTA",
-      "COPY // CONSTRUINDO ÂNGULOS",
-      "DESIGN // GERANDO VARIAÇÕES",
-      "ANALYTICS // DEFININDO SINAIS",
-    ],
+  signals_analyzed: {
+    index: "02",
+    status: "ANALISANDO SINAIS",
+    statusEn: "ANALYZING SIGNALS",
+    timeline: "Sinais de mercado analisados",
   },
-  finding_opportunities: {
-    code: "04 // OPPORTUNITIES",
-    title: "Oportunidades identificadas",
-    lines: [
-      "DEMANDA OCIOSA EM DIAS DE SEMANA",
-      "SEGMENTO DE MAIOR VALOR",
-      "ÂNGULO DE CONTEÚDO COM POTENCIAL",
-    ],
+  agents_coordinated: {
+    index: "03",
+    status: "COORDENANDO ESPECIALISTAS",
+    statusEn: "COORDINATING SPECIALISTS",
+    timeline: "Especialistas coordenados",
   },
-  diagnostic_ready: {
-    code: "05 // DIAGNOSTIC",
-    title: "Diagnóstico demonstrativo pronto",
-    lines: ["DIAGNÓSTICO PRONTO"],
+  opportunities_found: {
+    index: "04",
+    status: "ENCONTRANDO OPORTUNIDADES",
+    statusEn: "FINDING OPPORTUNITIES",
+    timeline: "Oportunidade identificada",
+  },
+  result_ready: {
+    index: "05",
+    status: "DIAGNÓSTICO PRONTO",
+    statusEn: "DIAGNOSTIC READY",
+    timeline: "Diagnóstico preparado",
   },
 };
 
-export const STEP_DURATION: Record<OperationStep, number> = {
-  loading_context: 2200,
-  analyzing_signals: 2300,
-  coordinating_agents: 2800,
-  finding_opportunities: 2400,
-  diagnostic_ready: 0,
+export const STEP_DURATION: Record<VetorOperationStep, number> = {
+  command_received: 1100,
+  context_loaded: 1700,
+  signals_analyzed: 1900,
+  agents_coordinated: 2200,
+  opportunities_found: 1900,
+  result_ready: 0,
 };
 
-export const AGENTS = [
+export const SPECIALISTS = [
   "ESTRATÉGIA",
   "GROWTH",
   "COPY",
@@ -93,29 +84,5 @@ export const AGENTS = [
   "ANALYTICS",
 ] as const;
 
-export const CONTEXT_UNITS = [
-  "PERFIL DO NEGÓCIO",
-  "CANAIS ATIVOS",
-  "OFERTA PRINCIPAL",
-  "PÚBLICO RECORRENTE",
-  "SAZONALIDADE",
-  "CONCORRÊNCIA LOCAL",
-];
-
-export const OPPORTUNITIES = [
-  {
-    tag: "HIPÓTESE",
-    title: "Demanda ociosa em dias de semana",
-    body: "Sinais indicam janelas de baixa procura que podem responder a uma oferta específica. Precisa de teste.",
-  },
-  {
-    tag: "HIPÓTESE",
-    title: "Segmento de maior valor",
-    body: "Parte do público tende a comprar mais vezes. Vale isolar esse grupo antes de escalar investimento.",
-  },
-  {
-    tag: "HIPÓTESE",
-    title: "Ângulo de conteúdo com potencial",
-    body: "Um tema recorrente aparece nas conversas e ainda não é explorado nas peças atuais.",
-  },
-];
+/** Nós visíveis em telas pequenas (rede mais enxuta). */
+export const MOBILE_SPECIALISTS = ["ESTRATÉGIA", "COPY", "DESIGN", "TRÁFEGO"];

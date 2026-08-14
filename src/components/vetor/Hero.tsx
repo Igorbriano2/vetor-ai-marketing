@@ -15,7 +15,7 @@ const SIGNAIS = [
 export function Hero() {
   const [state, setState] = useState<CoreState>("idle");
   const handleState = useCallback((s: CoreState) => setState(s), []);
-  const { activate, isActivationOpen } = useVetorActivation();
+  const { activate, isStarting } = useVetorActivation();
   const coreRef = useRef<HTMLDivElement>(null);
 
   const startDiagnostic = useCallback(() => {
@@ -63,9 +63,9 @@ export function Hero() {
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <CtaPrimary
               onClick={startDiagnostic}
-              className={isActivationOpen ? "animate-command-pulse" : ""}
+              className={isStarting ? "animate-command-pulse" : ""}
             >
-              Iniciar meu diagnóstico
+              {isStarting ? "INICIANDO DIAGNÓSTICO" : "Iniciar meu diagnóstico"}
             </CtaPrimary>
             <CtaGhost href="#missao">Ver o VETOR em ação</CtaGhost>
           </div>
