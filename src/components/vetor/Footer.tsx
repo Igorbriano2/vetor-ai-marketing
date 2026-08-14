@@ -1,8 +1,8 @@
-import { VetorLogo, WHATSAPP_URL } from "./shared";
+import { VetorMark as VetorLogo, WHATSAPP_URL } from "./system";
 
 export function Footer() {
   return (
-    <footer className="section-dark border-t border-border px-5 py-12 sm:px-8">
+    <footer className="bg-void border-t border-border px-5 py-12 sm:px-8">
       <div className="mx-auto grid w-full max-w-6xl gap-8 sm:grid-cols-3">
         <div>
           <VetorLogo />
@@ -16,7 +16,7 @@ export function Footer() {
           <p className="text-sm font-semibold">Vetor</p>
           <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
             <li>
-              <a href="#nichos" className="hover:text-foreground">
+              <a href="#verticais" className="hover:text-foreground">
                 Para o seu negócio
               </a>
             </li>
@@ -26,7 +26,7 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a href="#faq" className="hover:text-foreground">
+              <a href="#sinais" className="hover:text-foreground">
                 Perguntas frequentes
               </a>
             </li>

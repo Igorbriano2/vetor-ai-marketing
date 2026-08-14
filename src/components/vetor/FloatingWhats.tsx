@@ -1,4 +1,4 @@
-import { WHATSAPP_URL } from "./shared";
+import { WHATSAPP_URL } from "./system";
 
 export function FloatingWhats() {
   return (
