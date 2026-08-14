@@ -15,9 +15,25 @@ const SIGNAIS = [
 export function Hero() {
   const [state, setState] = useState<CoreState>("idle");
   const handleState = useCallback((s: CoreState) => setState(s), []);
+  const { activate, isActivationOpen } = useVetorActivation();
+  const coreRef = useRef<HTMLDivElement>(null);
+
+  const startDiagnostic = useCallback(() => {
+    const rect = coreRef.current?.getBoundingClientRect();
+    const origin = rect
+      ? {
+          x: ((rect.left + rect.width / 2) / window.innerWidth) * 100,
+          y: ((rect.top + rect.height / 2) / window.innerHeight) * 100,
+        }
+      : { x: 50, y: 45 };
+    activate(origin);
+  }, [activate]);
 
   return (
-    <section id="topo" className="grain relative overflow-hidden px-5 pt-28 pb-16 sm:px-8 sm:pt-36 md:pb-24">
+    <section
+      id="topo"
+      className="grain relative overflow-hidden px-5 pt-28 pb-16 sm:px-8 sm:pt-36 md:pb-24"
+    >
       <div className="grid-bg pointer-events-none absolute inset-0 opacity-60" aria-hidden="true" />
       <div
         className="pointer-events-none absolute inset-x-0 -top-40 h-[520px] opacity-70"
@@ -45,12 +61,17 @@ export function Hero() {
           </div>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <CtaPrimary href="#ativar">Iniciar meu diagnóstico</CtaPrimary>
+            <CtaPrimary
+              onClick={startDiagnostic}
+              className={isActivationOpen ? "animate-command-pulse" : ""}
+            >
+              Iniciar meu diagnóstico
+            </CtaPrimary>
             <CtaGhost href="#missao">Ver o VETOR em ação</CtaGhost>
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+        <div ref={coreRef} className="relative mx-auto w-full max-w-md lg:max-w-none">
           <VetorCore state={state} />
           <div className="pointer-events-none absolute inset-0 hidden sm:block" aria-hidden="true">
             {SIGNAIS.map((s, i) => (
