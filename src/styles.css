@@ -417,3 +417,58 @@
 @utility animate-command-pulse {
   animation: vetor-command-pulse 0.5s ease-out;
 }
+
+/* ————— Camada fullscreen de operação ————— */
+
+.vetor-operation-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100dvh;
+  min-height: 100vh;
+  z-index: 9999;
+  overflow: hidden;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+@utility op-scene-bg {
+  background: radial-gradient(circle at 50% 45%, #ffe59a 0%, #f5c542 30%, #d99a24 100%);
+}
+
+@utility vetor-dimmed {
+  filter: brightness(0.35) saturate(0.25);
+  transition: filter 380ms ease-out;
+}
+
+@keyframes vetor-node-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@utility animate-node-in {
+  animation: vetor-node-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes vetor-status-in {
+  from {
+    opacity: 0;
+    letter-spacing: 0.5em;
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: 0.22em;
+    filter: blur(0);
+  }
+}
+
+@utility animate-status-in {
+  animation: vetor-status-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
