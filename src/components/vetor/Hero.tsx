@@ -1,7 +1,8 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { CommandBar } from "./CommandBar";
 import { VetorCore, type CoreState } from "./VetorCore";
 import { CtaGhost, CtaPrimary, MonoLabel } from "./system";
+import { useVetorActivation } from "./activation/VetorActivationController";
 
 const SIGNAIS = [
   { label: "MARKET SIGNALS", pos: "left-0 top-[12%]" },
