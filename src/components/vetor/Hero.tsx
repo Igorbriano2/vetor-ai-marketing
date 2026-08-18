@@ -84,7 +84,7 @@ export function Hero() {
         </div>
 
         <div ref={coreRef} className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <VetorCore state={state} />
+          <VetorPersonaHero state={personaState} />
           <div className="pointer-events-none absolute inset-0 hidden sm:block" aria-hidden="true">
             {SIGNAIS.map((s, i) => (
               <span
