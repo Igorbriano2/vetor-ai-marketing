@@ -1,8 +1,20 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { CommandBar } from "./CommandBar";
-import { VetorCore, type CoreState } from "./VetorCore";
+import type { CoreState } from "./VetorCore";
+import { VetorPersonaHero, type VetorPersonaState } from "./VetorPersonaHero";
 import { CtaGhost, CtaPrimary, MonoLabel } from "./system";
 import { useVetorActivation } from "./activation/VetorActivationController";
+
+const PERSONA_BY_CORE: Record<CoreState, VetorPersonaState> = {
+  idle: "standby",
+  listening: "listening",
+  understanding: "thinking",
+  planning: "thinking",
+  executing: "executing",
+  approval: "speaking",
+  success: "completed",
+};
+
 
 const SIGNAIS = [
   { label: "MARKET SIGNALS", pos: "left-0 top-[12%]" },
@@ -17,6 +29,10 @@ export function Hero() {
   const handleState = useCallback((s: CoreState) => setState(s), []);
   const { activate, isStarting } = useVetorActivation();
   const coreRef = useRef<HTMLDivElement>(null);
+  const personaState = useMemo<VetorPersonaState>(
+    () => (isStarting ? "executing" : PERSONA_BY_CORE[state]),
+    [isStarting, state],
+  );
 
   const startDiagnostic = useCallback(() => {
     const rect = coreRef.current?.getBoundingClientRect();
@@ -72,7 +88,7 @@ export function Hero() {
         </div>
 
         <div ref={coreRef} className="relative mx-auto w-full max-w-md lg:max-w-none">
-          <VetorCore state={state} />
+          <VetorPersonaHero state={personaState} />
           <div className="pointer-events-none absolute inset-0 hidden sm:block" aria-hidden="true">
             {SIGNAIS.map((s, i) => (
               <span
