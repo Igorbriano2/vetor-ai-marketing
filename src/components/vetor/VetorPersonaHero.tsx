@@ -44,9 +44,9 @@ function buildPointsFromImage(img: HTMLImageElement): Point[] {
   for (let y = 0; y < SAMPLE; y++) {
     for (let x = 0; x < SAMPLE; x++) {
       const i = (y * SAMPLE + x) * 4;
-      const a = data[i + 3] / 255;
+      const a = data[i + 3]! / 255;
       if (a < 0.35) continue;
-      const lum = (0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2]) / 255;
+      const lum = (0.299 * data[i]! + 0.587 * data[i + 1]! + 0.114 * data[i + 2]!) / 255;
       if (lum < 0.16) continue;
       // stochastic thinning: brighter areas keep more points -> voids inside the face
       const keep = 0.16 + lum * 0.62;
@@ -244,7 +244,7 @@ export function VetorPersonaHero({
         st === "speaking" && !reduced ? 0.5 + 0.5 * Math.sin(t * 9) : 0;
 
       for (let i = 0; i < pts.length; i++) {
-        const p = pts[i];
+        const p = pts[i]!;
         const wob = Math.sin(t * 1.4 + p.seed) ;
         const wob2 = Math.cos(t * 1.9 + p.seed * 1.7);
 
