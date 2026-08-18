@@ -1,8 +1,20 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { CommandBar } from "./CommandBar";
-import { VetorCore, type CoreState } from "./VetorCore";
+import type { CoreState } from "./VetorCore";
+import { VetorPersonaHero, type VetorPersonaState } from "./VetorPersonaHero";
 import { CtaGhost, CtaPrimary, MonoLabel } from "./system";
 import { useVetorActivation } from "./activation/VetorActivationController";
+
+const PERSONA_BY_CORE: Record<CoreState, VetorPersonaState> = {
+  idle: "standby",
+  listening: "listening",
+  understanding: "thinking",
+  planning: "thinking",
+  executing: "executing",
+  approval: "speaking",
+  success: "completed",
+};
+
 
 const SIGNAIS = [
   { label: "MARKET SIGNALS", pos: "left-0 top-[12%]" },
