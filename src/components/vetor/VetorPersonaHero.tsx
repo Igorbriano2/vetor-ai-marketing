@@ -29,7 +29,7 @@ type Point = {
   size: number;
 };
 
-const SAMPLE = 150;
+const SAMPLE = 210;
 
 /** Build the point cloud from the luminance of a source image (never drawn directly). */
 function buildPointsFromImage(img: HTMLImageElement): Point[] {
@@ -47,9 +47,9 @@ function buildPointsFromImage(img: HTMLImageElement): Point[] {
       const a = data[i + 3]! / 255;
       if (a < 0.35) continue;
       const lum = (0.299 * data[i]! + 0.587 * data[i + 1]! + 0.114 * data[i + 2]!) / 255;
-      if (lum < 0.16) continue;
+      if (lum < 0.10) continue;
       // stochastic thinning: brighter areas keep more points -> voids inside the face
-      const keep = 0.16 + lum * 0.62;
+      const keep = 0.34 + lum * 0.62;
       const r = (Math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1;
       const rnd = Math.abs(r);
       if (rnd > keep) continue;
@@ -261,12 +261,12 @@ export function VetorPersonaHero({
         }
 
         // density / opacity
-        let a = 0.18 + p.b * 0.62;
-        a *= 1 - p.edge * 0.55; // edges dissolve
+        let a = 0.30 + p.b * 0.70;
+        a *= 1 - p.edge * 0.35; // edges dissolve
         a *= 1 - bottom * 0.65;
         if (energetic) a *= 1.18;
         // flicker / render-in-progress feel
-        a *= 0.65 + 0.35 * Math.sin(t * (st === "thinking" ? 5 : 2.2) + p.seed * 3);
+        a *= 0.78 + 0.22 * Math.sin(t * (st === "thinking" ? 5 : 2.2) + p.seed * 3);
         // horizontal scanline band boost
         const dScan = Math.abs(y - scanY);
         if (dScan < 26) a += (1 - dScan / 26) * (st === "standby" ? 0.18 : 0.34);
@@ -281,7 +281,7 @@ export function VetorPersonaHero({
           ? `rgba(${ir},${ig},${ib},${Math.min(1, a)})`
           : `rgba(${cr},${cg},${cb},${Math.min(1, a)})`;
 
-        const s = p.size * (w / 420) * (bright ? 1.15 : 1);
+        const s = p.size * (w / 340) * (bright ? 1.15 : 1);
         if (i % 17 === 0) {
           // occasional voxel
           ctx.fillRect(x, y, s * 2.1, s * 2.1);
