@@ -29,6 +29,10 @@ export function Hero() {
   const handleState = useCallback((s: CoreState) => setState(s), []);
   const { activate, isStarting } = useVetorActivation();
   const coreRef = useRef<HTMLDivElement>(null);
+  const personaState = useMemo<VetorPersonaState>(
+    () => (isStarting ? "executing" : PERSONA_BY_CORE[state]),
+    [isStarting, state],
+  );
 
   const startDiagnostic = useCallback(() => {
     const rect = coreRef.current?.getBoundingClientRect();
